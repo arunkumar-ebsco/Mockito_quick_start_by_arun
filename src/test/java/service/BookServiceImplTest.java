@@ -45,10 +45,16 @@ public class BookServiceImplTest {
        //When
        Mockito.when(bookDao.findBooksByAuthorName(authorName)).thenReturn(bookListMocked);
        List<Book> bookList =  bookService.findBooksByAuthorName(authorName);
-       System.out.println(bookList.size());
 
        //Then
        Assert.assertTrue(bookList.size()==1);
    }
+
+    @Test(expected = NullPointerException.class)
+    public void testFindBooksByAuthorName_With_Empty_Author(){
+        //Given
+        String authorName = null;
+        List<Book> bookList =  bookService.findBooksByAuthorName(authorName);
+    }
 
 }
